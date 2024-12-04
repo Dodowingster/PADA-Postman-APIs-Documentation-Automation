@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <title>Postman Export</title>
+    <title>{{ data.info.name }}</title>
     <style>
-        /* Custom Styles */
         body {
             padding-top: 56px;
         }
@@ -73,10 +72,90 @@
             background-color: #f1f1f1;
         }
 
-        /* Main Content */
         .main-content {
             margin-left: 260px;
             padding-top: 20px;
+        }
+
+        .api-method {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .method {
+            display: inline-block;
+            padding: 6px 15px;
+            margin-right: 10px;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .method-get {
+            background-color: #28a745; /* Green for GET */
+        }
+
+        .method-post {
+            background-color: #007bff; /* Blue for POST */
+        }
+
+        .method-put {
+            background-color: #ffc107; /* Yellow for PUT */
+        }
+
+        .method-delete {
+            background-color: #dc3545; /* Red for DELETE */
+        }
+
+        .method-patch {
+            background-color: #6f42c1; /* Purple for PATCH */
+        }
+
+        .method-head {
+            background-color: #17a2b8; /* Cyan for HEAD */
+        }
+
+        .method-options {
+            background-color: #fd7e14; /* Orange for OPTIONS */
+        }
+
+        .method-trace {
+            background-color: #6c757d; /* Gray for TRACE */
+        }
+
+        .method-connect {
+            background-color: #f8f9fa; /* Light gray for CONNECT */
+            color: black;
+        }
+
+        .endpoint-description {
+            font-size: 16px;
+            font-weight: normal;
+            color: #f8f9fa;
+            background-color: #343a40;
+            padding: 10px 20px;
+            border-radius: 4px;
+            flex-grow: 1; /* Ensures this takes remaining space */
+        }
+
+        .api-method .method {
+            flex-shrink: 0; /* Ensures the method tag doesn't shrink */
+        }
+
+        .api-method .endpoint-description {
+            margin-left: 10px; /* Adds spacing between method and description */
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .api-method .method:hover {
+            opacity: 0.8; /* Hover effect for methods */
         }
     </style>
 </head>
@@ -85,7 +164,7 @@
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Postman API Docs</a>
+        <a class="navbar-brand" href="#">Postman API Documentation</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -93,7 +172,7 @@
 
     <!-- Sidebar Navigation -->
     <div class="sidebar">
-        <h4>API Endpoints</h4>
+        <h4 class="ml-2">{{ data.info.name }}</h4>
         <ul class="list-unstyled">
             {% for item in data.item %}
                 <li>
@@ -111,13 +190,6 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="container mt-5">
-            <h1>Postman Collection</h1>
-
-            {% if data.info %}
-            <h2>{{ data.info.name }}</h2>
-            <p>{{ data.info.description }}</p>
-            {% endif %}
-
             <div class="accordion" id="postmanAccordion">
                 {% for item in data.item %}
                 <div class="card" id="item{{ loop.index }}">
@@ -135,12 +207,29 @@
                             {% for sub_item in item.item %}
                             <div id="subitem{{ loop.index0 }}">
                                 <h5>{{ sub_item.name }}</h5>
+                                <div class="api-method">
+                                    <div class="method 
+                                        {% if sub_item.request.method == 'GET' %}method-get{% endif %}
+                                        {% if sub_item.request.method == 'POST' %}method-post{% endif %}
+                                        {% if sub_item.request.method == 'PUT' %}method-put{% endif %}
+                                        {% if sub_item.request.method == 'DELETE' %}method-delete{% endif %}
+                                        {% if sub_item.request.method == 'PATCH' %}method-patch{% endif %}
+                                        {% if sub_item.request.method == 'HEAD' %}method-head{% endif %}
+                                        {% if sub_item.request.method == 'OPTIONS' %}method-options{% endif %}
+                                        {% if sub_item.request.method == 'TRACE' %}method-trace{% endif %}
+                                        {% if sub_item.request.method == 'CONNECT' %}method-connect{% endif %}
+                                    ">
+                                        {{ sub_item.request.method }}
+                                    </div>
+                                    <div class="endpoint-description">
+                                        <strong>{{ sub_item.request.url.raw if sub_item.request.url.raw else "N/A" }}</strong> - {{ sub_item.request.description | safe }}
+                                    </div>
+                                </div>
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Pass-in Parameters</th>
                                             <th>Sample JSON Input</th>
-                                            <th>Existing API URL</th>
                                             <th>New API URL</th>
                                         </tr>
                                     </thead>
@@ -164,7 +253,6 @@
                                                 N/A
                                                 {% endif %}
                                             </td>
-                                            <td>{{ sub_item.request.url.raw if sub_item.request.url.raw else "N/A" }}</td>
                                             <td><!-- Empty for now --></td>
                                         </tr>
                                     </tbody>
