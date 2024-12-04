@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Postman Export</title>
+    <style>
+        /* Custom Styles */
+        body {
+            padding-top: 56px;
+        }
+
+        .table pre {
+            background-color: #f8f9fa;
+            border: 1px solid #eaecef;
+            border-radius: 6px;
+            padding: 16px;
+            font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 85%;
+            line-height: 1.45;
+            overflow: auto;
+            max-height: 200px;
+            margin: 0;
+        }
+
+        .table pre::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .table pre::-webkit-scrollbar-thumb {
+            background-color: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .table pre::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #f8f9fa;
+            border-right: 1px solid #ddd;
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .sidebar a:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Postman API Docs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <h4>API Endpoints</h4>
+        <ul class="list-unstyled">
+            
+                <li>
+                    <a href="#item1">Login</a>
+                    <!-- <ul>
+                        
+                            <li><a href="#subitem0">InstantToken</a></li>
+                        
+                            <li><a href="#subitem1">Login</a></li>
+                        
+                            <li><a href="#subitem2">VerifyToken</a></li>
+                        
+                    </ul> -->
+                </li>
+            
+                <li>
+                    <a href="#item2">Customer_Support API</a>
+                    <!-- <ul>
+                        
+                            <li><a href="#subitem0">Fetch FAQ Module</a></li>
+                        
+                            <li><a href="#subitem1">Fetch FAQ Category</a></li>
+                        
+                            <li><a href="#subitem2">Fetch FAQ Sub Category</a></li>
+                        
+                            <li><a href="#subitem3">Fetch FAQ</a></li>
+                        
+                            <li><a href="#subitem4">Insert Feedback Status</a></li>
+                        
+                    </ul> -->
+                </li>
+            
+                <li>
+                    <a href="#item3">BEEP_Chat API</a>
+                    <!-- <ul>
+                        
+                            <li><a href="#subitem0">Fetch BEEP Conversation</a></li>
+                        
+                            <li><a href="#subitem1">Update BEEP Participant</a></li>
+                        
+                    </ul> -->
+                </li>
+            
+                <li>
+                    <a href="#item4">TalkJs API</a>
+                    <!-- <ul>
+                        
+                            <li><a href="#subitem0">Fetch Conversation by User</a></li>
+                        
+                            <li><a href="#subitem1">Fetch Conversation by ID</a></li>
+                        
+                            <li><a href="#subitem2">Send Message</a></li>
+                        
+                            <li><a href="#subitem3">Edit Message</a></li>
+                        
+                            <li><a href="#subitem4">Reply Message</a></li>
+                        
+                            <li><a href="#subitem5">Delete Message</a></li>
+                        
+                            <li><a href="#subitem6">Share Contact</a></li>
+                        
+                            <li><a href="#subitem7">Share Product</a></li>
+                        
+                            <li><a href="#subitem8">Create Group</a></li>
+                        
+                    </ul> -->
+                </li>
+            
+                <li>
+                    <a href="#item5">Merchant_Support API</a>
+                    <!-- <ul>
+                        
+                            <li><a href="#subitem0">Fetch FAQ</a></li>
+                        
+                            <li><a href="#subitem1">Fetch FAQ Setting</a></li>
+                        
+                            <li><a href="#subitem2">Update FAQ</a></li>
+                        
+                            <li><a href="#subitem3">Update FAQ Setting</a></li>
+                        
+                    </ul> -->
+                </li>
+            
+                <li>
+                    <a href="#item6">Dialogflow API</a>
+                    <!-- <ul>
+                        
+                            <li><a href="#subitem0">Get Document</a></li>
+                        
+                            <li><a href="#subitem1">Create Document</a></li>
+                        
+                            <li><a href="#subitem2">Update Document</a></li>
+                        
+                            <li><a href="#subitem3">Delete Document</a></li>
+                        
+                    </ul> -->
+                </li>
+            
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container mt-5">
+            <h1>Postman Collection</h1>
+
+            
+            <h2>BeepNodeAPI</h2>
+            <p>BeepNode uses TalkJS RestAPI. The API here handles fetching, posting and filtering Conversations on Beep Communication Platform.</p>
+            
+
+            <div class="accordion" id="postmanAccordion">
+                
+                <div class="card" id="item1">
+                    <div class="card-header" id="heading1">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                Login
+                            </button>
+                        </h2>
+                        <h6 class="mb-0">API for Login and Token Verification. To test other API's these must be run first.</h6>
+                    </div>
+
+                    <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#postmanAccordion">
+                        <div class="card-body">
+                            
+                            <div id="subitem0">
+                                <h5>InstantToken</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                N/A
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{"ip_address":"127.0.0.1"}</pre>
+                                                
+                                            </td>
+                                            <td>{{nodeApiUrl}}auth/instant_token</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem1">
+                                <h5>Login</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                N/A
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "login_type": 2,
+    "app_id": 2,
+    "uname": "avinashr@orblike.com",
+    "upwd": "1234"
+}</pre>
+                                                
+                                            </td>
+                                            <td>{{nodeApiUrl}}auth/login</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem2">
+                                <h5>VerifyToken</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                N/A
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre></pre>
+                                                
+                                            </td>
+                                            <td>{{nodeApiUrl}}auth/verify_token</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" id="item2">
+                    <div class="card-header" id="heading2">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                Customer_Support API
+                            </button>
+                        </h2>
+                        <h6 class="mb-0">Author: Aqqil, Addiyan | Story: <a href="https://proppy.atlassian.net/browse/PM-2161" target="_blank">PM-2161</a></h6>
+                    </div>
+
+                    <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#postmanAccordion">
+                        <div class="card-body">
+                            
+                            <div id="subitem0">
+                                <h5>Fetch FAQ Module</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>pid</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "pid" : "AA210707155336548QK"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/customer_support/faq_module</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem1">
+                                <h5>Fetch FAQ Category</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>pid</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "pid" : "AA210707155336548QK"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/customer_support/faq_category</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem2">
+                                <h5>Fetch FAQ Sub Category</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>pid</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "pid" : "AA210707155336548QK"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/customer_support/faq_sub_category</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem3">
+                                <h5>Fetch FAQ</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>pid</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "pid" : "AA210707155336548QK"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/customer_support/faq</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem4">
+                                <h5>Insert Feedback Status</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>faq_id</strong>: isInt</li>
+                                                    
+                                                    <li><strong>pid</strong>: isString</li>
+                                                    
+                                                    <li><strong>feedback_status_id</strong>: isInt</li>
+                                                    
+                                                    <li><strong>status</strong>: isInt</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "pid" : "AA210707155336548QK",
+    "faq_id" : "1",
+    "feedback_status_id" : "1",
+    "status" : "1"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/customer_support/insert_feedback</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" id="item3">
+                    <div class="card-header" id="heading3">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                BEEP_Chat API
+                            </button>
+                        </h2>
+                        <h6 class="mb-0">Author: Aqqil, Addiyan | Story: <a href="https://proppy.atlassian.net/browse/PM-2161" target="_blank">PM-2161</a></h6>
+                    </div>
+
+                    <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#postmanAccordion">
+                        <div class="card-body">
+                            
+                            <div id="subitem0">
+                                <h5>Fetch BEEP Conversation</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>object_id</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "object_id": "AB210805012657897IP"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/chat/get_beep_conversation</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem1">
+                                <h5>Update BEEP Participant</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>conversation_id</strong>: isArray</li>
+                                                    
+                                                    <li><strong>object_id</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "conversation_id": "5",
+    "object_id": "AA210707155336548QK",
+    "pinned_status": "1",
+    "muted_status": "0",
+    "blocked_status": "0",
+    "deleted_status": "0"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/chat/update_beep_participant</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" id="item4">
+                    <div class="card-header" id="heading4">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                TalkJs API
+                            </button>
+                        </h2>
+                        <h6 class="mb-0">Author: Aqqil, Addiyan | Story: <a href="https://proppy.atlassian.net/browse/PM-2191" target="_blank"> PM-2191</a>, <a href="https://proppy.atlassian.net/browse/PM-2193" target="_blank">PM-2193</a></h6>
+                    </div>
+
+                    <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#postmanAccordion">
+                        <div class="card-body">
+                            
+                            <div id="subitem0">
+                                <h5>Fetch Conversation by User</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>pid</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "pid" : "AA210707155336548QK"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/talkjs/conversations</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem1">
+                                <h5>Fetch Conversation by ID</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>conversation_id</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "conversation_id": "1136873c-f382-4600-852e-e72ab7ff2430",
+    "pid": "AA210707155336548QK"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/talkjs/conversation_by_id</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem2">
+                                <h5>Send Message</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>receiver_pid</strong>: isString</li>
+                                                    
+                                                    <li><strong>text_message</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "sender_pid": "AA210706134223578RU",
+    "receiver_pid": "AA210707155336548QK",
+    "conversation_id": "1136873c-f382-4600-852e-e72ab7ff2430",
+    "text_message": "This is a New Message Incoming 22"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/talkjs/send_message</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem3">
+                                <h5>Edit Message</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>conversation_id</strong>: isString</li>
+                                                    
+                                                    <li><strong>message_id</strong>: isString</li>
+                                                    
+                                                    <li><strong>text_message</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "conversation_id": "AA210707155336548QKAA210707155336548QK",
+    "message_id": "msg_626xUOl7C86Q4Na2XhB7kT",
+    "text_message": "Wallaooo its working?!!!!"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/talkjs/edit_message</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem4">
+                                <h5>Reply Message</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>conversation_id</strong>: isString</li>
+                                                    
+                                                    <li><strong>message_id</strong>: isString</li>
+                                                    
+                                                    <li><strong>reply_text</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "conversation_id": "AA210707155336548QKAA210707155336548QK",
+    "message_id": "msg_45FnKhGQHSI2MhyeqpB95a",
+    "custom_message": "Testing share contact",
+    "sender_pid": "AA210707155336548QK"
+}       </pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/talkjs/reply_message</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem5">
+                                <h5>Delete Message</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>conversation_id</strong>: isString</li>
+                                                    
+                                                    <li><strong>message_id</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "conversation_id": "AA210707155336548QKAA210707155336548QK",
+    "message_id": "msg_626xUOl7C86Q4Na2XhB7kT"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/talkjs/delete_message</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem6">
+                                <h5>Share Contact</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>conversation_id</strong>: isString</li>
+                                                    
+                                                    <li><strong>message_id</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "conversation_id": "AA210707155336548QKAA210707155336548QK",
+    "message_id": "msg_626xUOl7C86Q4Na2XhB7kT"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/talkjs/delete_message</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem7">
+                                <h5>Share Product</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>conversation_id</strong>: isString</li>
+                                                    
+                                                    <li><strong>product_id</strong>: isArray</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "conversation_id": "AA210707155336548QKAA210707155336548QK",
+    "product_id": ["PC220628210651283EC"]
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/talkjs/share_product</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem8">
+                                <h5>Create Group</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>participants</strong>: isArray</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "participants": [ "AA210706134223578RU", "AA210707155336548QK", "AA210905131058578CG"]
+    // "subject": "Testing Group Creation",
+    // "image_url": "https://insert_png_file_here"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/talkjs/create_group</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" id="item5">
+                    <div class="card-header" id="heading5">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="true" aria-controls="collapse5">
+                                Merchant_Support API
+                            </button>
+                        </h2>
+                        <h6 class="mb-0">Author: Aqqil, Addiyan | Story: <a href="https://proppy.atlassian.net/browse/PM-2194" target="_blank">PM-2194</a></h6>
+                    </div>
+
+                    <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#postmanAccordion">
+                        <div class="card-body">
+                            
+                            <div id="subitem0">
+                                <h5>Fetch FAQ</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>object_id</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "object_id" : "AB210805012657897IP",
+    "object_type" : 1
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/merchant_support/get_faq</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem1">
+                                <h5>Fetch FAQ Setting</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>pid</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "object_id" : "AB210805012657897IP",
+    "object_type" : 1
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/merchant_support/faq_setting</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem2">
+                                <h5>Update FAQ</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>object_id</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "object_id" : "AB210805012657897IP",
+    "object_type" : 1,
+    "welcome_message" : "Hello there!",
+    "faq_status_id" : 1,
+    "status" : 1
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/merchant_support/get_faq</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem3">
+                                <h5>Update FAQ Setting</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>object_id</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "object_id" : "AB210805012657897IP",
+    "object_type" : 1,
+    "welcome_message" : "Hello there!",
+    "faq_status_id" : 1,
+    "status" : 1
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/merchant_support/get_faq</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" id="item6">
+                    <div class="card-header" id="heading6">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="true" aria-controls="collapse6">
+                                Dialogflow API
+                            </button>
+                        </h2>
+                        <h6 class="mb-0">Author: Aqqil, Addiyan | Story: <a href="https://proppy.atlassian.net/browse/PM-2195" target="_blank">PM-2195</a></h6>
+                    </div>
+
+                    <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#postmanAccordion">
+                        <div class="card-body">
+                            
+                            <div id="subitem0">
+                                <h5>Get Document</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                N/A
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre></pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/dialogflow/get_document</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem1">
+                                <h5>Create Document</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>display_name</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "display_name": "FAQ New",
+    "csv_path": "C:/Dev/BeepNode/public/csv/faq.csv"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/dialogflow/create_document</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem2">
+                                <h5>Update Document</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                <ul>
+                                                    
+                                                    <li><strong>display_name</strong>: isString</li>
+                                                    
+                                                </ul>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "display_name": "FAQ Test",
+    "csv_path": "C:/Dev/BeepNode/public/csv/faq.csv"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/dialogflow/update_document</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="subitem3">
+                                <h5>Delete Document</h5>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pass-in Parameters</th>
+                                            <th>Sample JSON Input</th>
+                                            <th>Existing API URL</th>
+                                            <th>New API URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                
+                                                N/A
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <pre>{
+    "documentId": "MTU3MzIzNDQ4Nzc0NDQyMzUyNjU"
+}</pre>
+                                                
+                                            </td>
+                                            <td>http://localhost:3015/dialogflow/delete_document</td>
+                                            <td><!-- Empty for now --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                    
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
