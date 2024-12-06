@@ -33,19 +33,21 @@
 
     <!-- Main Content -->
     <div class="main-content">
+        {% if data.info.description %}
+        {{ data.info.description }}
+        {% else %}
+        <p>The text you are currently reading is where your Collection Description would be if you had any in your
+            postman.</p>
+        {% endif %}
         <div class="container mt-5">
             <div class="accordion" id="postmanAccordion">
                 {% for item in data.item %}
                 <div class="card" id="item{{ loop.index }}">
-                    <div class="card-header" id="heading{{ loop.index }}">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse"
-                                data-target="#collapse{{ loop.index }}" aria-expanded="true"
-                                aria-controls="collapse{{ loop.index }}">
-                                {{ item.name }}
-                            </button>
-                        </h2>
-                        <h6 class="mb-0">{{ item.description | safe }}</h6>
+                    <div class="card-header" id="heading{{ loop.index }}" type="button" data-toggle="collapse"
+                        data-target="#collapse{{ loop.index }}" aria-expanded="true"
+                        aria-controls="collapse{{ loop.index }}">
+                        {{ item.name }}
+                        <h6 class=" mb-0">{{ item.description | safe }}</h6>
                     </div>
 
                     <div id="collapse{{ loop.index }}" class="collapse" aria-labelledby="heading{{ loop.index }}"
@@ -118,8 +120,10 @@
                                                         {% if response_item.code >= 200 and response_item.code < 300 %}status-success
                                                         {% elif response_item.code >= 400 and response_item.code < 500 %}status-client-error
                                                         {% elif response_item.code >= 500 %}status-server-error{% endif %}">
+                                                        {% if response_item.code is defined %}
                                                         Status {{ response_item.status }} {{ response_item.code }}
                                                         {{response_item.name }}
+                                                        {% endif %}
                                                     </span>
                                                 </a>
                                             </li>
