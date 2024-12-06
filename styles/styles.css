@@ -1,0 +1,280 @@
+body {
+    padding-top: 56px;
+}
+
+.sub-item {
+    padding: auto;
+}
+
+.nav.nav-tabs > li > a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nav {
+    flex-wrap: nowrap !important;
+    -ms-flex-wrap: nowrap !important;
+    overflow: scroll; /* Enable scrolling */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.nav::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Edge */
+}
+
+
+.nav.nav-tabs > li {
+    border-radius: 10px 10px 0px 0px;
+    background: #fff;
+    padding: 5px 10px;
+    border: 2px solid #e6e6e6;
+}
+
+.table pre {
+    background-color: #f8f9fa;
+    border: 1px solid #eaecef;
+    border-radius: 6px;
+    padding: 16px;
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 85%;
+    line-height: 1.45;
+    overflow: auto;
+    max-height: 200px;
+    margin: 0;
+}
+
+.table pre::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.table pre::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 4px;
+}
+
+.table pre::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh; /* Full viewport height */
+    background-color: #f8f9fa;
+    border-right: 1px solid #ddd;
+    padding-top: 20px;
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+ul.list-unstyled {
+    list-style-type: none;  /* Remove default list bullets */
+    padding-left: 0;
+}
+
+/* Styling for each list item */
+ul.list-unstyled > li {
+    margin: 10px 0;
+    padding: 5px 0;
+}
+
+/* Styling links */
+ul.list-unstyled a {
+    color: #007bff;
+    text-decoration: none;
+    display: block;
+    padding: 8px 10px;
+    font-weight: 600;
+    border-radius: 4px;
+}
+
+/* Hover effect for links */
+ul.list-unstyled a:hover {
+    background-color: #e2e6ea;
+    color: #0056b3;
+}
+
+/* Styling the sublist (nested lists) */
+ul.list-unstyled ul {
+    padding-left: 20px;  /* Indentation for sublist items */
+    margin-top: 5px;
+}
+
+/* Style for nested list items */
+ul.list-unstyled ul li {
+    margin: 5px 0;
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.sidebar a:hover {
+    background-color: #f1f1f1;
+}
+
+.main-content {
+    margin-left: 260px;
+    padding-top: 20px;
+}
+
+.api-method {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.method {
+    display: inline-block;
+    padding: 6px 15px;
+    margin-right: 10px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.method-get {
+    background-color: #28a745; /* Green for GET */
+}
+
+.method-post {
+    background-color: #007bff; /* Blue for POST */
+}
+
+.method-put {
+    background-color: #ffc107; /* Yellow for PUT */
+}
+
+.method-delete {
+    background-color: #dc3545; /* Red for DELETE */
+}
+
+.method-patch {
+    background-color: #6f42c1; /* Purple for PATCH */
+}
+
+.method-head {
+    background-color: #17a2b8; /* Cyan for HEAD */
+}
+
+.method-options {
+    background-color: #fd7e14; /* Orange for OPTIONS */
+}
+
+.method-trace {
+    background-color: #6c757d; /* Gray for TRACE */
+}
+
+.method-connect {
+    background-color: #f8f9fa; /* Light gray for CONNECT */
+    color: black;
+}
+
+.endpoint-description {
+    font-size: 16px;
+    font-weight: normal;
+    font-style: italic;
+    color: #f8f9fa;
+    background-color: #343a40;
+    padding: 10px 20px;
+    border-radius: 4px;
+    flex-grow: 1;
+    letter-spacing: 2px;
+}
+
+.api-method .method {
+    flex-shrink: 0; /* Ensures the method tag doesn't shrink */
+}
+
+.api-method .endpoint-description {
+    margin-left: 10px; /* Adds spacing between method and description */
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.api-method .method:hover {
+    opacity: 0.8; /* Hover effect for methods */
+}
+/* Container for the response */
+.response-container {
+    padding: 15px;
+    background-color: #f8f9fa; /* Light gray background */
+    border: 1px solid #ddd; /* Subtle border for distinction */
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* Styling for each response section */
+.response-section {
+    margin-top: 15px;
+}
+
+/* Individual response items */
+.response-item {
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #ffffff; /* White background for contrast */
+    border: 1px solid #e9ecef; /* Light border for distinction */
+    border-radius: 5px;
+}
+
+/* Header for status and code */
+.response-header {
+    font-weight: bold;
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+        /* Success (2xx) */
+.status-success {
+    color: #28a745; /* Green */
+    font-weight: bold;
+}
+
+/* Client error (4xx) */
+.status-client-error {
+    color: #ff4107; /* Yellow/Orange */
+    font-weight: bold;
+}
+
+/* Server error (5xx) */
+.status-server-error {
+    color: #dc3545; /* Red */
+    font-weight: bold;
+}
+
+/* Body content */
+.response-body {
+    margin-top: 10px;
+    max-height: 400px; /* Set a maximum height for vertical scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: auto; /* Enable horizontal scrolling for large content like JSON */
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    font-family: "Courier New", Courier, monospace; /* Monospaced font for code-like text */
+    white-space: pre-wrap; /* Ensure JSON content wraps */
+}
+
+/* Divider between responses */
+.response-divider {
+    border: 1px solid #ddd;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

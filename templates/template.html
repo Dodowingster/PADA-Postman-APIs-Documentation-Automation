@@ -6,274 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <title>{{ data.info.name }}</title>
-    <style>
-        body {
-            padding-top: 56px;
-        }
-
-        .table pre {
-            background-color: #f8f9fa;
-            border: 1px solid #eaecef;
-            border-radius: 6px;
-            padding: 16px;
-            font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-            font-size: 85%;
-            line-height: 1.45;
-            overflow: auto;
-            max-height: 200px;
-            margin: 0;
-        }
-
-        .table pre::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        .table pre::-webkit-scrollbar-thumb {
-            background-color: #c1c1c1;
-            border-radius: 4px;
-        }
-
-        .table pre::-webkit-scrollbar-track {
-            background-color: #f1f1f1;
-        }
-
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 250px;
-            height: 100vh; /* Full viewport height */
-            background-color: #f8f9fa;
-            border-right: 1px solid #ddd;
-            padding-top: 20px;
-            overflow-y: auto; /* Enable vertical scrolling */
-        }
-
-        /* Styling the main list */
-        ul.list-unstyled {
-            list-style-type: none;  /* Remove default list bullets */
-            padding-left: 0;
-        }
-
-        /* Styling for each list item */
-        ul.list-unstyled > li {
-            margin: 10px 0;
-            padding: 5px 0;
-        }
-
-        /* Styling links */
-        ul.list-unstyled a {
-            color: #007bff;
-            text-decoration: none;
-            display: block;
-            padding: 8px 10px;
-            font-weight: 600;
-            border-radius: 4px;
-        }
-
-        /* Hover effect for links */
-        ul.list-unstyled a:hover {
-            background-color: #e2e6ea;
-            color: #0056b3;
-        }
-
-        /* Styling the sublist (nested lists) */
-        ul.list-unstyled ul {
-            padding-left: 20px;  /* Indentation for sublist items */
-            margin-top: 5px;
-        }
-
-        /* Style for nested list items */
-        ul.list-unstyled ul li {
-            margin: 5px 0;
-        }
-
-        .sidebar a {
-            display: block;
-            padding: 10px 15px;
-            text-decoration: none;
-            color: #007bff;
-        }
-
-        .sidebar a:hover {
-            background-color: #f1f1f1;
-        }
-
-        .main-content {
-            margin-left: 260px;
-            padding-top: 20px;
-        }
-
-        .api-method {
-            display: flex;
-            align-items: center;
-            margin: 10px 0;
-        }
-
-        .method {
-            display: inline-block;
-            padding: 6px 15px;
-            margin-right: 10px;
-            border-radius: 20px;
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
-            text-align: center;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-
-        .method-get {
-            background-color: #28a745; /* Green for GET */
-        }
-
-        .method-post {
-            background-color: #007bff; /* Blue for POST */
-        }
-
-        .method-put {
-            background-color: #ffc107; /* Yellow for PUT */
-        }
-
-        .method-delete {
-            background-color: #dc3545; /* Red for DELETE */
-        }
-
-        .method-patch {
-            background-color: #6f42c1; /* Purple for PATCH */
-        }
-
-        .method-head {
-            background-color: #17a2b8; /* Cyan for HEAD */
-        }
-
-        .method-options {
-            background-color: #fd7e14; /* Orange for OPTIONS */
-        }
-
-        .method-trace {
-            background-color: #6c757d; /* Gray for TRACE */
-        }
-
-        .method-connect {
-            background-color: #f8f9fa; /* Light gray for CONNECT */
-            color: black;
-        }
-
-        .endpoint-description {
-            font-size: 16px;
-            font-weight: normal;
-            font-style: italic;
-            color: #f8f9fa;
-            background-color: #343a40;
-            padding: 10px 20px;
-            border-radius: 4px;
-            flex-grow: 1;
-            letter-spacing: 2px;
-        }
-
-        .api-method .method {
-            flex-shrink: 0; /* Ensures the method tag doesn't shrink */
-        }
-
-        .api-method .endpoint-description {
-            margin-left: 10px; /* Adds spacing between method and description */
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-        }
-
-        .api-method .method:hover {
-            opacity: 0.8; /* Hover effect for methods */
-        }
-        /* Container for the response */
-        .response-container {
-            max-height: 400px; /* Set a maximum height for vertical scrolling */
-            overflow-y: auto; /* Enable vertical scrolling */
-            overflow-x: auto; /* Enable horizontal scrolling for large content like JSON */
-            padding: 15px;
-            background-color: #f8f9fa; /* Light gray background */
-            border: 1px solid #ddd; /* Subtle border for distinction */
-            border-radius: 5px;
-            margin-top: 15px;
-        }
-
-        /* Styling for each response section */
-        .response-section {
-            margin-top: 15px;
-        }
-
-        /* Individual response items */
-        .response-item {
-            padding: 10px;
-            margin-bottom: 15px;
-            background-color: #ffffff; /* White background for contrast */
-            border: 1px solid #e9ecef; /* Light border for distinction */
-            border-radius: 5px;
-        }
-
-        /* Header for status and code */
-        .response-header {
-            font-weight: bold;
-            background-color: #e9ecef;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-                /* Success (2xx) */
-        .status-success {
-            color: #28a745; /* Green */
-            font-weight: bold;
-        }
-
-        /* Client error (4xx) */
-        .status-client-error {
-            color: #ffc107; /* Yellow/Orange */
-            font-weight: bold;
-        }
-
-        /* Server error (5xx) */
-        .status-server-error {
-            color: #dc3545; /* Red */
-            font-weight: bold;
-        }
-
-        /* Body content */
-        .response-body {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #f1f1f1;
-            border-radius: 5px;
-            font-family: "Courier New", Courier, monospace; /* Monospaced font for code-like text */
-            white-space: pre-wrap; /* Ensure JSON content wraps */
-        }
-
-        /* Divider between responses */
-        .response-divider {
-            border: 1px solid #ddd;
-            margin-top: 15px;
-            margin-bottom: 15px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>{{ data.info.name }} Documentation</title>
 </head>
 
 <body>
     <!-- Sidebar Navigation -->
     <div class="sidebar">
-        <h4 class="ml-2">{{ data.info.name }}</h4>
+        <h4 class="ml-2">{{ data.info.name }} Documentation</h4>
         <ul class="list-unstyled">
             {% for item in data.item %}
-                <li>
-                    <a href="#item{{ loop.index }}">{{ item.name }}</a>
-                    <ul>
-                        {% for sub_item in item.item %}
-                            <li><a href="#subitem{{ loop.index0 }}">{{ sub_item.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
+            <li>
+                <a href="#item{{ loop.index }}">{{ item.name }}</a>
+                <ul>
+                    {% set outer_index = loop.index %}
+                    {% for sub_item in item.item %}
+                    <li>
+                        <a href="#item{{ outer_index }}-subitem{{ loop.index0 }}">{{ sub_item.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
             {% endfor %}
         </ul>
     </div>
@@ -286,17 +39,21 @@
                 <div class="card" id="item{{ loop.index }}">
                     <div class="card-header" id="heading{{ loop.index }}">
                         <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ loop.index }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}">
+                            <button class="btn btn-link" type="button" data-toggle="collapse"
+                                data-target="#collapse{{ loop.index }}" aria-expanded="true"
+                                aria-controls="collapse{{ loop.index }}">
                                 {{ item.name }}
                             </button>
                         </h2>
                         <h6 class="mb-0">{{ item.description | safe }}</h6>
                     </div>
 
-                    <div id="collapse{{ loop.index }}" class="collapse" aria-labelledby="heading{{ loop.index }}" data-parent="#postmanAccordion">
+                    <div id="collapse{{ loop.index }}" class="collapse" aria-labelledby="heading{{ loop.index }}"
+                        data-parent="#postmanAccordion">
                         <div class="card-body">
+                            {% set outer_index = loop.index %}
                             {% for sub_item in item.item %}
-                            <div id="subitem{{ loop.index0 }}">
+                            <div id="item{{ outer_index }}-subitem{{ loop.index0 }}">
                                 <h5>{{ sub_item.name }}</h5>
                                 <div class="api-method">
                                     <div class="method 
@@ -313,7 +70,8 @@
                                         {{ sub_item.request.method }}
                                     </div>
                                     <div class="endpoint-description">
-                                        <strong>{{ sub_item.request.url.raw if sub_item.request.url.raw else "N/A" }}</strong>
+                                        <strong>{{ sub_item.request.url.raw if sub_item.request.url.raw else "N/A"
+                                            }}</strong>
                                     </div>
                                 </div>
                                 <table class="table table-bordered">
@@ -321,7 +79,6 @@
                                         <tr>
                                             <th>Pass-in Parameters</th>
                                             <th>Sample JSON Input</th>
-                                            <th>New API URL</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -344,7 +101,6 @@
                                                 N/A
                                                 {% endif %}
                                             </td>
-                                            <td><!-- Empty for now --></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -352,49 +108,48 @@
                                 <div class="response-container">
                                     {% if sub_item.response %}
                                     <div class="response-section">
-                                        {% if sub_item.response is iterable %}
+                                        <ul class="nav nav-tabs" role="tablist">
                                             {% for response_item in sub_item.response %}
-                                            <div class="response-item">
-                                                <div class="response-header">
-                                                    <strong>Status: </strong> 
-                                                    <span class="status-text 
-                                                        {% if response_item.code >= 200 and response_item.code < 300 %}status-success{% endif %}
-                                                        {% if response_item.code >= 400 and response_item.code < 500 %}status-client-error{% endif %}
-                                                        {% if response_item.code >= 500 %}status-server-error{% endif %}
-                                                    ">
-                                                        {{ response_item.status }}
+                                            <li role="presentation" class="{% if loop.index == 1 %}active{% endif %}">
+                                                <a href="#response-tab-{{ outer_index }}-{{ loop.index0 }}-{{ loop.index }}"
+                                                    data-toggle="tab">
+                                                    <span
+                                                        class="status-code 
+                                                        {% if response_item.code >= 200 and response_item.code < 300 %}status-success
+                                                        {% elif response_item.code >= 400 and response_item.code < 500 %}status-client-error
+                                                        {% elif response_item.code >= 500 %}status-server-error{% endif %}">
+                                                        Status {{ response_item.status }} {{ response_item.code }}
+                                                        {{response_item.name }}
                                                     </span>
-                                                    <br>
-                                                    <strong>Code: </strong> 
-                                                    <span class="status-code 
-                                                        {% if response_item.code >= 200 and response_item.code < 300 %}status-success{% endif %}
-                                                        {% if response_item.code >= 400 and response_item.code < 500 %}status-client-error{% endif %}
-                                                        {% if response_item.code >= 500 %}status-server-error{% endif %}
-                                                    ">
-                                                        {{ response_item.code }}
-                                                    </span>
-                                                </div>
+                                                </a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+
+                                        <div class="tab-content">
+                                            {% for response_item in sub_item.response %}
+                                            <div class="tab-pane {% if loop.index == 1 %}active{% endif %}"
+                                                id="response-tab-{{ outer_index }}-{{ loop.index0 }}-{{ loop.index }}">
                                                 <strong>Body:</strong>
                                                 <div class="response-body">
                                                     <pre>{{ response_item.body | safe }}</pre>
                                                 </div>
-                                                <hr class="response-divider"> <!-- Optional: Separator between each response item -->
                                             </div>
                                             {% endfor %}
-                                        {% else %}
-                                            <p>{{ sub_item.response }}</p>
-                                        {% endif %}
+                                        </div>
                                     </div>
                                     {% else %}
-                                    <p>N/A</p>
+                                    <p>No Response is recorded in Postman. To resolve this, "Save Response" after
+                                        sending an API.</p>
                                     {% endif %}
                                 </div>
                             </div>
+                            <hr class="response-divider">
                             {% endfor %}
                         </div>
                     </div>
                 </div>
-                {% endfor %}    
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -402,6 +157,20 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Handle sidebar sub-item clicks
+            $('.sidebar ul ul a').on('click', function (e) {
+                // Get the parent item ID from the href
+                var targetId = $(this).attr('href');
+                var parentCollapseId = '#collapse' + targetId.split('-')[0].replace('#item', '');
+
+                // Show the parent accordion
+                $(parentCollapseId).collapse('show');
+            });
+        });
+    </script>
+
 </body>
 
 </html>
