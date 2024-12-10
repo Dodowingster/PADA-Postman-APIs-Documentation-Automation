@@ -36,8 +36,12 @@
         {% if data.info.description %}
         {{ data.info.description }}
         {% else %}
-        <p>The text you are currently reading is where your Collection Description would be if you had any in your
-            postman.</p>
+        <p>
+            <i>
+                The text you are currently reading is where your Collection Description would be if you had any in your
+                POSTMAN.
+            </i>
+        </p>
         {% endif %}
         <div class="container mt-5">
             <div class="accordion" id="postmanAccordion">
@@ -47,7 +51,12 @@
                         data-target="#collapse{{ loop.index }}" aria-expanded="true"
                         aria-controls="collapse{{ loop.index }}">
                         {{ item.name }}
+                        {%if item.description %}
                         <h6 class=" mb-0">{{ item.description | safe }}</h6>
+                        {% else %}
+                        <h6 class=" mb-0"><i>Here is where the API route's description from POSTMAN will be displayed.
+                                If you are seeing this it means that the API description is null or undefined.</i></h6>
+                        {% endif %}
                     </div>
 
                     <div id="collapse{{ loop.index }}" class="collapse" aria-labelledby="heading{{ loop.index }}"
@@ -143,8 +152,12 @@
                                         </div>
                                     </div>
                                     {% else %}
-                                    <p>No Response is recorded in Postman. To resolve this, "Save Response" after
-                                        sending an API.</p>
+                                    <p>
+                                        <i>
+                                            No Response is recorded in POSTMAN. To resolve this, "Save Response" after
+                                            sending an API.
+                                        </i>
+                                    </p>
                                     {% endif %}
                                 </div>
                             </div>
