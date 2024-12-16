@@ -23,8 +23,9 @@ A powerful tool that automatically generates beautiful HTML documentation from P
 
 ## Usage
 
-1. Export your Postman collection as JSON and save it as `json files/input.json`
-2. (Optional) Place your Express.js route files in the `routes` directory
+![directory_sample](imgs/directory-sample.png)
+1. Export your Postman collection as JSON and save it as `json files/input.json` (!! IMPORTANT: Make sure the collection name is the same as the folder name in the directory!!)
+2. (Optional) Place your route files in the `routes` directory (create one if there's none)
 3. Run the Jupyter notebook `documentator.ipynb`
 4. Access the generated documentation at `index.html`
 
@@ -39,6 +40,7 @@ A powerful tool that automatically generates beautiful HTML documentation from P
 ### Route Parameter Extraction
 - Automatically detects `check()` validations from Express.js routes
 - Maps parameters to corresponding API endpoints
+- Postmen does not save the data type of the parameters, so we need to manually add them. However since most API routes are using `check()` to validate the data type, we can just use the `check()` function to extract the datatypes and determine if its a string, number, or boolean. Of course, the Backend programmer needs to add the `check()` function to the route. for this feature to be working.
 
 ### Documentation Elements
 - Sidebar navigation with collapsible sections
