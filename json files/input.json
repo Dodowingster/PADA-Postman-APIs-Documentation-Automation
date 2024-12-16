@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "12852b71-8bc2-41b0-bbde-600054bd61a3",
 		"name": "Pathfinder API",
-		"description": "This collection contains endpoints for the Pathfinder APIEndFragment",
+		"description": "This collection contains endpoints for the Pathfinder API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "33410317"
 	},
@@ -961,6 +961,52 @@
 				}
 			],
 			"description": "Endpoints related to save files in Pathfinder"
+		},
+		{
+			"name": "Empty Route Sample",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": ""
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
 		}
 	]
 }
