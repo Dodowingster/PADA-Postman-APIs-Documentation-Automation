@@ -50,8 +50,9 @@ body {
 }
 
 .table pre {
-    background-color: #f8f9fa;
-    border: 1px solid #eaecef;
+    background-color: #373737;
+    border: 2px solid rgb(110, 110, 110);
+    color: rgb(168, 168, 235);
     border-radius: 6px;
     padding: 16px;
     font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
@@ -193,10 +194,16 @@ ul.list-unstyled a:hover {
 .endpoint-description {
     font-size: 16px;
     font-weight: normal;
-    font-style: italic;
+    font-family: SFMono-Regular,
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+    ;
     color: #f8f9fa;
     background-color: #343a40;
     padding: 10px 20px;
+    border: 2px solid #505050;
     border-radius: 4px;
     flex-grow: 1;
     letter-spacing: 2px;

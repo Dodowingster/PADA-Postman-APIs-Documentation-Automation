@@ -1,3 +1,966 @@
 {
-	sample JSON File save your Postmen export JSON file here to this one overwrite it
+	"info": {
+		"_postman_id": "12852b71-8bc2-41b0-bbde-600054bd61a3",
+		"name": "Pathfinder API",
+		"description": "This collection contains endpoints for the Pathfinder APIEndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33410317"
+	},
+	"item": [
+		{
+			"name": "Character Routes",
+			"item": [
+				{
+					"name": "Get Character Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response Content-Type is application/json\", function () {",
+									"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Status field should exist and be true\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.have.property('status', true);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Data array is present and not empty\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.data).to.exist.and.to.be.an('array').and.to.have.length.above(0);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate the structure and contents of the lastMessage object\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData.lastMessage).to.be.an('object');",
+									"    pm.expect(responseData.lastMessage.id).to.be.a('string');",
+									"    pm.expect(responseData.lastMessage.type).to.be.a('string');",
+									"    pm.expect(responseData.lastMessage.origin).to.be.a('string');",
+									"    pm.expect(responseData.lastMessage.location).to.be.null;",
+									"    pm.expect(responseData.lastMessage.text).to.be.a('string');",
+									"    pm.expect(responseData.lastMessage.attachment).to.be.null;",
+									"    pm.expect(responseData.lastMessage.conversationId).to.be.a('string');",
+									"    pm.expect(responseData.lastMessage.custom).to.be.an('object');",
+									"    pm.expect(responseData.lastMessage.content).to.be.an('array');",
+									"    responseData.lastMessage.content.forEach(function (content) {",
+									"        pm.expect(content.type).to.be.a('string');",
+									"        pm.expect(content.children).to.be.an('array');",
+									"    });",
+									"    pm.expect(responseData.lastMessage.readBy).to.be.an('array');",
+									"    pm.expect(responseData.lastMessage.createdAt).to.be.a('number');",
+									"    pm.expect(responseData.lastMessage.senderId).to.be.a('string');",
+									"    pm.expect(responseData.lastMessage.editedAt).to.be.null;",
+									"    pm.expect(responseData.lastMessage.referencedMessageId).to.be.null;",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{ph_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.pathfinder.com/character",
+							"protocol": "https",
+							"host": [
+								"api",
+								"pathfinder",
+								"com"
+							],
+							"path": [
+								"character"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Fetch Character by ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{ph_access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\" : \"12345\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.pathfinder.com/character/{characterId}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"pathfinder",
+										"com"
+									],
+									"path": [
+										"character",
+										"{characterId}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "137598"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2197e-o2BPfop6uDQPS4leW70JcBKccdY\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Nov 2024 03:57:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": 12345,\n  \"name\": \"John the Wizard\",\n  \"class\": \"Wizard\",\n  \"level\": 5\n}\n"
+						},
+						{
+							"name": "Fetch Character by Name",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{ph_access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"John the Wizard\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.pathfinder.com/character/{characterId}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"pathfinder",
+										"com"
+									],
+									"path": [
+										"character",
+										"{characterId}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "137598"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2197e-o2BPfop6uDQPS4leW70JcBKccdY\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Nov 2024 03:57:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": 12345,\n  \"name\": \"John the Wizard\",\n  \"class\": \"Wizard\",\n  \"level\": 5\n}\n"
+						},
+						{
+							"name": "Empty Character ID",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{ph_access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\" : \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.pathfinder.com/character/{characterId}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"pathfinder",
+										"com"
+									],
+									"path": [
+										"character",
+										"{characterId}"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "105"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"69-Mqtfxv417qz3TsGQsF8kNbDIcTg\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Nov 2024 04:23:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"error\": [\n        {\n            \"type\": \"field\",\n            \"value\": \"\",\n            \"msg\": \"Invalid ID\",\n            \"path\": \"id\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Character",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{ph_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Cinder\",\r\n    \"class\": \"Sorcerer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.pathfinder.com/character",
+							"protocol": "https",
+							"host": [
+								"api",
+								"pathfinder",
+								"com"
+							],
+							"path": [
+								"character"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Character",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{ph_access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Cinder\",\r\n    \"class\": \"Sorcerer\",\r\n    \"archetype\": \"Scholar\",\r\n    \"STR\": 10,\r\n    \"DEX\": 14,\r\n    \"CON\": 12,\r\n    \"INT\": 16,\r\n    \"WIS\": 13,\r\n    \"CHA\": 18,\r\n    \"level\": 5,\r\n    \"spells\": [\r\n        \"Fireball\",\r\n        \"Magic Missile\",\r\n        \"Mage Armor\"\r\n    ],\r\n    \"abilities\": [\r\n        {\r\n            \"name\": \"Arcane Knowledge\",\r\n            \"description\": \"Gain expertise in magical theory and practices.\"\r\n        },\r\n        {\r\n            \"name\": \"Elemental Mastery\",\r\n            \"description\": \"Ability to control elemental forces in combat.\"\r\n        }\r\n    ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.pathfinder.com/character",
+									"protocol": "https",
+									"host": [
+										"api",
+										"pathfinder",
+										"com"
+									],
+									"path": [
+										"character"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65257"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"fee9-zO/EonWGVUwpTqRzaYSfsKgAuyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Nov 2024 06:40:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Character created successfully!\",\n    \"character_id\": \":1337\",\n    \"name\": \"Cinder\",\n    \"class\": \"Sorcerer\",\n    \"level\": 5\n}\n"
+						}
+					]
+				},
+				{
+					"name": "Update Character",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{ph_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"character_id\": \"1337\",\r\n    \"name\": \"Cinder\",\r\n    \"class\": \"Fighter\",\r\n    \"archetype\": \"Tower Shield Specialist\",\r\n    \"level\": 5,\r\n    \"STR\": 18,\r\n    \"DEX\": 14,\r\n    \"CON\": 16,\r\n    \"INT\": 10,\r\n    \"WIS\": 12,\r\n    \"CHA\": 14,\r\n    \"spells\": [],\r\n    \"abilities\": [\r\n        {\r\n            \"name\": \"Power Attack\",\r\n            \"description\": \"Allows a fighter to trade attack accuracy for damage.\"\r\n        },\r\n        {\r\n            \"name\": \"Second Wind\",\r\n            \"description\": \"A fighter can use a bonus action to regain some health.\"\r\n        }\r\n    ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.pathfinder.com/character/{characterId}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"pathfinder",
+								"com"
+							],
+							"path": [
+								"character",
+								"{characterId}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Character by ID",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{ph_access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"character_id\": \"1337\",\r\n    \"name\": \"Cinder\",\r\n    \"class\": \"Fighter\",\r\n    \"archetype\": \"Tower Shield Specialist\",\r\n    \"level\": 5,\r\n    \"STR\": 18,\r\n    \"DEX\": 14,\r\n    \"CON\": 16,\r\n    \"INT\": 10,\r\n    \"WIS\": 12,\r\n    \"CHA\": 14,\r\n    \"spells\": [],\r\n    \"abilities\": [\r\n        {\r\n            \"name\": \"Power Attack\",\r\n            \"description\": \"Allows a fighter to trade attack accuracy for damage.\"\r\n        },\r\n        {\r\n            \"name\": \"Second Wind\",\r\n            \"description\": \"A fighter can use a bonus action to regain some health.\"\r\n        }\r\n    ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.pathfinder.com/character/{characterId}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"pathfinder",
+										"com"
+									],
+									"path": [
+										"character",
+										"{characterId}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "623"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26f-MI2Yggb9ToSgEbjXi8iaEzOmTHY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 Dec 2024 08:21:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Character updated successfully!\",\n    \"name\": \"Cinder\",\n    \"class\": \"Fighter\",\n    \"archetype\": \"Tower Shield Specialist\",\n    \"level\": 5,\n    \"STR\": 18,\n    \"DEX\": 14,\n    \"CON\": 16\n}\n"
+						}
+					]
+				},
+				{
+					"name": "Patch Character Stats",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{ph_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"character_id\": \"1337\",\r\n    \"STR\": 20,\r\n    \"DEX\": 16,\r\n    \"Level\": 6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.pathfinder.com/character/{characterId}/stats",
+							"protocol": "https",
+							"host": [
+								"api",
+								"pathfinder",
+								"com"
+							],
+							"path": [
+								"character",
+								"{characterId}",
+								"stats"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Patch Stats",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{ph_access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"character_id\": \"1337\",\r\n    \"STR\": 20,\r\n    \"DEX\": 16,\r\n    \"Level\": 6\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.pathfinder.com/character/{characterId}/stats",
+									"protocol": "https",
+									"host": [
+										"api",
+										"pathfinder",
+										"com"
+									],
+									"path": [
+										"character",
+										"{characterId}",
+										"stats"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "623"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26f-MI2Yggb9ToSgEbjXi8iaEzOmTHY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 Dec 2024 08:21:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n        \"message\": \"Character stats updated successfully\",\n        \"updated_fields\": [\"STR\", \"DEX\", \"level\"],\n        \"character_id\": \"1337\"\n}\n"
+						}
+					]
+				}
+			],
+			"description": "Endpoints related to characters in Pathfinder"
+		},
+		{
+			"name": "Game Saves",
+			"item": [
+				{
+					"name": "Get Savegames",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"character_id\": \"1337\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.pathfinder.com/savegame",
+							"protocol": "https",
+							"host": [
+								"api",
+								"pathfinder",
+								"com"
+							],
+							"path": [
+								"savegame"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Fetch Savegame by Character_id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{ph_access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"character_id\": \"1337\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.pathfinder.com/savegame",
+									"protocol": "https",
+									"host": [
+										"api",
+										"pathfinder",
+										"com"
+									],
+									"path": [
+										"savegame"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "137598"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2197e-o2BPfop6uDQPS4leW70JcBKccdY\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Nov 2024 03:57:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"character_id\": \"1337\",\n    \"savegames\": [\n        {\n            \"savename\": \"Hero's Journey\",\n            \"in_game_location\": \"Dragon's Keep\",\n            \"hours_played\": 24.5\n        },\n        {\n            \"savename\": \"Final Frontier\",\n            \"in_game_location\": \"Outer Rim\",\n            \"hours_played\": 48.2\n        },\n        {\n            \"savename\": \"New Horizons\",\n            \"in_game_location\": \"Crystal Caverns\",\n            \"hours_played\": 12.0\n        }\n    ]\n}\n"
+						},
+						{
+							"name": "Empty Character ID",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{ph_access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\" : \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.pathfinder.com/savegame",
+									"protocol": "https",
+									"host": [
+										"api",
+										"pathfinder",
+										"com"
+									],
+									"path": [
+										"savegame"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "105"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"69-Mqtfxv417qz3TsGQsF8kNbDIcTg\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Nov 2024 04:23:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"Invalid or missing 'character_id'. Please provide a valid character ID.\"\n}\n"
+						}
+					]
+				},
+				{
+					"name": "Delete Character Save",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{ph_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"character_id\": \"1337\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.pathfinder.com/savegame/{characterId}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"pathfinder",
+								"com"
+							],
+							"path": [
+								"savegame",
+								"{characterId}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Save",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "{{ph_access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"character_id\": \"1337\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.pathfinder.com/savegame/{characterId}",
+									"protocol": "https",
+									"host": [
+										"api",
+										"pathfinder",
+										"com"
+									],
+									"path": [
+										"savegame",
+										"{characterId}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "623"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26f-MI2Yggb9ToSgEbjXi8iaEzOmTHY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 Dec 2024 08:21:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n        \"message\": \"Character Save deleted successfully\",\n        \"character_id\": \"1337\"\n}\n"
+						}
+					]
+				}
+			],
+			"description": "Endpoints related to save files in Pathfinder"
+		}
+	]
 }

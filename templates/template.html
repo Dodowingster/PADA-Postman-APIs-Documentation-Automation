@@ -81,8 +81,9 @@
                                         {{ sub_item.request.method }}
                                     </div>
                                     <div class="endpoint-description">
-                                        <strong>{{ sub_item.request.url.raw if sub_item.request.url.raw else "N/A"
-                                            }}</strong>
+                                        <strong>
+                                            {{ sub_item.request.url.raw if sub_item.request.url.raw else "N/A"}}
+                                        </strong>
                                     </div>
                                 </div>
                                 <table class="table table-bordered">
@@ -98,7 +99,7 @@
                                                 {% if sub_item.parameters %}
                                                 <div class="params">
                                                     {% for param in sub_item.parameters %}
-                                                    <li><strong>{{ param.param }}</strong>: {{ param.type }}</li>
+                                                    <li><strong>{{ param.param }}</strong> = {{ param.type }}</li>
                                                     {% endfor %}
                                                     {% else %}
                                                     <i>Pass-in parameters are generated based on your routes folder(if
@@ -183,22 +184,24 @@
     <script>
         $(document).ready(function () {
             $('.sidebar ul ul a').on('click', function (e) {
-                e.preventDefault(); // Prevent default anchor behavior
+                e.preventDefault();
 
                 var targetId = $(this).attr('href');
                 var parentCollapseId = '#collapse' + targetId.split('-')[0].replace('#item', '');
+                var $parentCollapse = $(parentCollapseId);
 
-                // Show the parent collapsible element
-                $(parentCollapseId).collapse('show');
-
-                // Scroll after the collapse animation finishes
-                $(parentCollapseId).on('shown.bs.collapse', function () {
-                    // Native smooth scrolling with CSS
+                if ($parentCollapse.hasClass('show')) {
+                    // If already expanded, scroll immediately
                     document.querySelector(targetId).scrollIntoView({ behavior: 'smooth', block: 'start' });
-                });
+                } else {
+                    // If collapsed, wait for expansion then scroll
+                    $parentCollapse.collapse('show');
+                    $parentCollapse.on('shown.bs.collapse', function () {
+                        document.querySelector(targetId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    });
+                }
             });
         });
-
     </script>
 
 </body>
