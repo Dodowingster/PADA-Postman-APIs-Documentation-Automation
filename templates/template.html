@@ -182,16 +182,23 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Handle sidebar sub-item clicks
             $('.sidebar ul ul a').on('click', function (e) {
-                // Get the parent item ID from the href
+                e.preventDefault(); // Prevent default anchor behavior
+
                 var targetId = $(this).attr('href');
                 var parentCollapseId = '#collapse' + targetId.split('-')[0].replace('#item', '');
 
-                // Show the parent accordion
+                // Show the parent collapsible element
                 $(parentCollapseId).collapse('show');
+
+                // Scroll after the collapse animation finishes
+                $(parentCollapseId).on('shown.bs.collapse', function () {
+                    // Native smooth scrolling with CSS
+                    document.querySelector(targetId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
             });
         });
+
     </script>
 
 </body>
