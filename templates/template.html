@@ -82,7 +82,13 @@
                                     </div>
                                     <div class="endpoint-description">
                                         <strong>
-                                            {{ sub_item.request.url.raw if sub_item.request.url.raw else "N/A"}}
+                                            {% if sub_item.request.url is defined and sub_item.request.url.raw %}
+                                            {{ sub_item.request.url.raw }}
+                                            {% elif sub_item.request.url is defined and not sub_item.request.url.raw %}
+                                            <i>Empty endpoint URL</i>
+                                            {% else %}
+                                            <i>No endpoint URL defined</i>
+                                            {% endif %}
                                         </strong>
                                     </div>
                                 </div>
@@ -112,10 +118,14 @@
                                                 {% endif %}
                                             </td>
                                             <td>
-                                                {% if sub_item.request.body.raw %}
+                                                {% if sub_item.request.body is defined and sub_item.request.body.raw %}
                                                 <pre>{{ sub_item.request.body.raw }}</pre>
+                                                {% elif sub_item.request.body is defined and sub_item.request.body.mode
+                                                == "raw" and not sub_item.request.body.raw
+                                                %}
+                                                <pre><i>Empty request body</i></pre>
                                                 {% else %}
-                                                <pre><i>Here is where your body/payload is parsed from based on your POSTMAN API Response.</i></pre>
+                                                <pre><i>No request body defined</i></pre>
                                                 {% endif %}
                                             </td>
                                         </tr>
@@ -130,14 +140,17 @@
                                             <li role="presentation" class="{% if loop.index == 1 %}active{% endif %}">
                                                 <a href="#response-tab-{{ outer_index }}-{{ sub_item._index }}-{{ loop.index0 }}"
                                                     data-toggle="tab">
-                                                    <span
-                                                        class="status-code 
-                                                        {% if response_item.code >= 200 and response_item.code < 300 %}status-success
-                                                        {% elif response_item.code >= 400 and response_item.code < 500 %}status-client-error
-                                                        {% elif response_item.code >= 500 %}status-server-error{% endif %}">
+                                                    <span class="status-code 
+                                                        {% if response_item.code is defined %}
+                                                            {% if response_item.code >= 200 and response_item.code < 300 %}status-success
+                                                            {% elif response_item.code >= 400 and response_item.code < 500 %}status-client-error
+                                                            {% elif response_item.code >= 500 %}status-server-error{% endif %}
+                                                        {% endif %}">
                                                         {% if response_item.code is defined %}
                                                         Status {{ response_item.status }} {{ response_item.code }}
                                                         {{response_item.name }}
+                                                        {% else %}
+                                                        Status Unknown
                                                         {% endif %}
                                                     </span>
                                                 </a>
@@ -151,7 +164,13 @@
                                                 id="response-tab-{{ outer_index }}-{{ sub_item._index }}-{{ loop.index0 }}">
                                                 <strong>Body:</strong>
                                                 <div class="response-body">
+                                                    {% if response_item.body %}
                                                     <pre>{{ response_item.body | safe }}</pre>
+                                                    {% elif response_item.body is defined and not response_item.body %}
+                                                    <pre><i>Empty response body</i></pre>
+                                                    {% else %}
+                                                    <pre><i>No response body defined</i></pre>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                             {% endfor %}
