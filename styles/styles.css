@@ -302,3 +302,7 @@ ul.list-unstyled a:hover {
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
+.params {
+    max-width: 50%;
+}
