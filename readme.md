@@ -17,9 +17,16 @@ A powerful tool that automatically generates beautiful HTML documentation from P
 ## Prerequisites
 
 - Python 3.x
-- Jinja2 template engine
+```
+pip install
+```
+- Jinja2
+```
+pip install jinja2
+```
 - Postman collection export (JSON format)
-- Express.js route files (optional)
+![postman_export](imgs/Export_Postman_Collection.gif)
+- route files (optional)
 
 ## Usage
 
